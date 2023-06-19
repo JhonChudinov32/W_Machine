@@ -1,0 +1,156 @@
+﻿@model W_Machine.Models.Drink
+
+@{
+    ViewBag.Title = "Admin: Редактировать " + @Model.Name;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style type="text/css">
+    .wrapper {
+        border: 3px solid rgb(134, 46, 14);
+        display: flex;
+        width: max-content;
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgb(247, 233, 228);
+        color: rgb(134, 46, 14);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        text-decoration: none;
+        width: 250px;
+        height: 30px;
+        border-radius: 8px;
+        border: 1px solid rgb(134, 46, 14);
+        padding: 5px;
+    }
+
+    label {
+        width: 250px;
+        padding: 20px;
+    }
+
+    textarea {
+        width: 250px;
+        height: 30px;
+        border-radius: 8px;
+        border: 1px solid rgb(134, 46, 14);
+        padding: 5px;
+    }
+
+    .check {
+        display: flex;
+    }
+
+    select {
+        display: inline-block;
+        width: 250px;
+        height: 30px;
+        border-radius: 8px;
+        border: 1px solid rgb(134, 46, 14);
+        padding: 5px;
+        margin: 0 auto;
+    }
+
+
+    .summa {
+        margin: 0px auto;
+        padding: 20px;
+        margin: 0px auto;
+        border: 3px solid coral;
+        color: rgb(134, 46, 14);
+        background-color: bisque;
+        display: block;
+        width: max-content;
+        min-width: 50px;
+        border-radius: 8px;
+        height: 46px;
+    }
+
+
+    button {
+        margin: 0px auto;
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 20px;
+        padding: 10px;
+        color: rgb(134, 46, 14);
+        display: block;
+        border: 3px solid rgb(134, 46, 14);
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .button {
+        margin: 0px auto;
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 20px;
+        padding: 10px;
+        color: rgb(134, 46, 14);
+        display: block;
+        border: 3px solid rgb(134, 46, 14);
+        border-radius: 8px;
+        cursor: pointer;
+        width:auto;
+        height:auto;
+        text-align:center;
+    }
+
+    .izo {
+        width: 150px;
+        height: 150px;
+        border: 3px solid rgb(134, 46, 14);
+        margin: 20px auto;
+    }
+</style>
+<section class="wrapper">
+    <form novalidate>
+        @if (@Model.Name == null)
+        {
+            <h1>Добавить товар:</h1>
+        }
+        else
+        {
+            <h1>Редактировать товар: @Model.Name</h1>
+        }
+
+        @using (Html.BeginForm("Edit", "Admin",
+    FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.EditorForModel()
+
+            <div style="border: 1px solid coral;">
+                <h2 style="text-align: center;">
+                    Изображение
+                </h2>
+                <div class="izo">
+                    @if (Model.ImageData == null)
+                    {
+                        @:None
+                    }
+                    else
+                    {
+                        <img width="150" height="150" src="@Url.Action("GetImage", "Home", new { Model.ProductID })" />
+                    }
+                </div>
+                <input type="file" class="button" name="Image" />
+
+
+            </div>
+
+            <label for="output">
+            </label>
+            <div class="form-toolbar">
+                <button type="submit" value="Сохранить">Сохранить</button>
+            </div>
+            <div class="form-toolbar">
+                <button type="submit" onclick="location.href='@Url.Action("Drink")';return false;">Вернуться</button>
+            </div>
+        }
+    </form>
+</section>

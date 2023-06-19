@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h2><strong>Форма авторизации</strong></h2><br />
+            <form asp-action="login" method="post">
+                <div class="form-group">
+                    <label>Логин</label>
+                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter user name">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <button class="btn btn-info" type="reset">Перзапустить</button>
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

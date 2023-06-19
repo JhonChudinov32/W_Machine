@@ -1,0 +1,132 @@
+﻿@model W_Machine.Models.Coin
+
+@{
+    ViewBag.Title = "Admin: Редактировать свойства" + @Model.SNameCoin;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+    <style type="text/css">
+        .wrapper {
+            border: 3px solid rgb(134, 46, 14);
+            display: flex;
+            width: max-content;
+            box-sizing: border-box;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb(247, 233, 228);
+            color: rgb(134, 46, 14);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            text-decoration: none;
+            width: 250px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid rgb(134, 46, 14);
+            padding: 5px;
+        }
+
+        label {
+            width: 250px;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 250px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid rgb(134, 46, 14);
+            padding: 5px;
+        }
+
+        .check {
+            display: flex;
+        }
+
+        select {
+            display: inline-block;
+            width: 250px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid rgb(134, 46, 14);
+            padding: 5px;
+            margin: 0 auto;
+        }
+
+
+        .summa {
+            margin: 0px auto;
+            padding: 20px;
+            margin: 0px auto;
+            border: 3px solid coral;
+            color: rgb(134, 46, 14);
+            background-color: bisque;
+            display: block;
+            width: max-content;
+            min-width: 50px;
+            border-radius: 8px;
+            height: 46px;
+        }
+
+
+        button {
+            margin: 0px auto;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            padding: 10px;
+            color: rgb(134, 46, 14);
+            display: block;
+            border: 3px solid rgb(134, 46, 14);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .button {
+            margin: 0px auto;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            padding: 10px;
+            color: rgb(134, 46, 14);
+            display: block;
+            border: 3px solid rgb(134, 46, 14);
+            border-radius: 8px;
+            cursor: pointer;
+            width: auto;
+            height: auto;
+            text-align: center;
+        }
+
+        .izo {
+            width: 150px;
+            height: 150px;
+            border: 3px solid rgb(134, 46, 14);
+            margin: 20px auto;
+        }
+    </style>
+    <section class="wrapper">
+        <form novalidate>
+            <h1>Редактировать @Model.SNameCoin</h1>
+            @using (Html.BeginForm("EditCoin", "Admin"))
+            {
+
+                @Html.EditorForModel()
+                @Html.Hidden("CoinID", Model.CoinID)
+               
+                <div class="form-toolbar">
+                    <button type="submit" value="Сохранить">Сохранить</button>
+                </div>
+
+                <div class="form-toolbar">
+                    <button type="submit" onclick="location.href='@Url.Action("Coin")';return false;">Вернуться</button>
+                </div>
+            }
+
+        </form>
+    </section>
+

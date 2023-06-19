@@ -1,0 +1,42 @@
+﻿@model IEnumerable<W_Machine.Models.Drink>
+    @{
+         ViewBag.Title = "Admin: Все товары";
+         Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+
+    <div class="menu">
+        <h2>Товары</h2>
+        <table border="1" class="admin-tab">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Товар</th>
+                    <th class="NumericCol">Цена</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.ProductID</td>
+                        <td>@Html.ActionLink(item.Name, "Edit", new { item.ProductID })</td>
+                        <td>@item.Price.ToString("c")</td>
+                        <td>
+                            <form asp-action="Delete" method="post">
+                                @Html.Hidden("ProductID", item.ProductID)
+                                <button type="submit" id="@item.ProductID" value="Удалить">Удалить</button> 
+                            </form>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+            }
+            </table>
+        <div class="new">
+            <button onclick="location.href='@Url.Action("Create")';return false;">Добавить новый товар</button>
+            <button onclick="location.href='@Url.Action("Index")';return false;">Вернутся на страницу управления</button>
+        </div>
+    </div>
+   
+

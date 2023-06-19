@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/Admin.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <style type="text/css">
+        .wrapper {
+            border: 3px solid rgb(134, 46, 14);
+            display: flex;
+            width: max-content;
+            box-sizing: border-box;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb(247, 233, 228);
+            color: rgb(134, 46, 14);
+        }
+
+        .menu {
+            border: 3px solid rgb(203, 82, 38);
+            display: flex;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            border-radius: 8px;
+            background-color: rgb(215, 187, 176);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .admin-tab {
+            text-align: center;
+            border: 1px solid rgb(134, 46, 14);
+            border: "1";
+            border-collapse: collapse;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgb(246, 216, 204);
+        }
+
+            .admin-tab td {
+                padding: 20px;
+            }
+
+            .admin-tab th {
+                padding: 20px;
+            }
+
+
+        button {
+            margin: 0px auto;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0px auto;
+            padding: 10px;
+            color: rgb(134, 46, 14);
+            border: 3px solid coral;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color:red;
+            border: 7px solid coral;
+        }
+
+        .new {
+            display: block;
+            margin-top: 20px;
+        }
+        th{
+            background-color:darkgray;
+        }
+    </style>
+    <div>
+        @if (TempData["message"] != null)
+        {
+            <div class="Message">@TempData["message"]</div>
+        }
+        @RenderBody()
+    </div>
+</body>
+</html>
+

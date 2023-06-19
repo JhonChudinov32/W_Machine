@@ -1,0 +1,265 @@
+﻿@model IEnumerable<W_Machine.Models.Drink>
+@{
+    Layout = null;
+}
+@using W_Machine.App_Code
+
+@*<h2>@ViewBag.Title.</h2>*@
+
+<script src="~/js/modernizr-2.8.3.js"></script>
+<script src="~/js/jquery-3.3.1.js"></script>
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    var Sum = 0;
+    function PlusOne() {
+        Sum += 1;
+        $('input[name="SumMoney"]').val(parseInt(Sum) + parseInt($('output[name="result"]').text()));
+    }
+    function PlusTwo() {
+        Sum += 2;
+        $('input[name="SumMoney"]').val(parseInt(Sum) + parseInt($('output[name="result"]').text()));
+    }
+    function PlusFive() {
+        Sum += 5;
+        $('input[name="SumMoney"]').val(parseInt(Sum) + parseInt($('output[name="result"]').text()));
+    }
+    function PlusTen() {
+        Sum += 10;
+        $('input[name="SumMoney"]').val(parseInt(Sum) + parseInt($('output[name="result"]').text()));
+    }
+    function DisableButton(Button) {
+        var btn = document.getElementById(Button).disabled = false;
+    }
+    //function RestOfMoney()
+    //{
+    //    $('input[name="SumMoney"]').val(0);
+    //}
+    $(function () {
+        $("#One").click(PlusOne);
+    });
+    $(function () {
+        $("#Two").click(PlusTwo);
+    });
+    $(function () {
+        $("#Five").click(PlusFive);
+    });
+    $(function () {
+        $("#Ten").click(PlusTen);
+    });
+    //$(function () { $("#Button1").click(RestOfMoney) });
+</script>
+
+<body>
+    <style type="text/css">
+        .wrapper {
+            border: 3px solid rgb(134, 46, 14);
+            display: flex;
+            width: max-content;
+            box-sizing: border-box;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb(247, 233, 228);
+        }
+
+        .menu {
+            border: 3px solid rgb(203, 82, 38);
+            display: flex;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            border-radius: 8px;
+            background-color: rgb(215, 187, 176);
+        }
+
+        button:disabled {
+            opacity: 50%;
+        }
+
+        button {
+            opacity: 100%;
+        }
+
+            button:active {
+                border: 5px solid crimson;
+            }
+
+
+        .menu__item {
+            background-color: coral;
+            border-radius: 8px;
+            border-color: coral;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .drink {
+            border: 3px solid coral;
+            padding: px;
+            background-color: rgb(247, 208, 194);
+            border-radius: 8px;
+            color: rgb(134, 46, 14);
+        }
+
+        .drink__img {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border: 2px dotted coral;
+            border-radius: 8px;
+        }
+
+        .drink__name {
+            text-align: center;
+        }
+
+        .drink__price {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 100%;
+        }
+
+        .money {
+            width: 100px;
+            height: 100px;
+        }
+
+        .header {
+            color: rgb(134, 46, 14);
+            text-align: center;
+        }
+
+        .money__button {
+            margin: 20px;
+            border-radius: 8px;
+            border: 3px solid coral;
+            margin-bottom: 0px;
+            cursor: pointer;
+        }
+
+        .summa {
+            margin: 0px auto;
+            padding: 0px;
+            margin: 0px auto;
+            border: 3px solid coral;
+            color: rgb(134, 46, 14);
+            background-color: bisque;
+            display: block;
+            min-width: 50px;
+            max-width: 50px;
+            border-radius: 8px;
+            height: 46px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .change__summa {
+            margin: 0px auto;
+            text-align: center;
+            margin: 0px auto;
+            border: 3px solid coral;
+            color: rgb(134, 46, 14);
+            background-color: bisque;
+            font-size: 20px;
+            width: 50px;
+            border-radius: 8px;
+            height: 50px;
+        }
+
+        .change__button {
+            margin: 0px auto;
+            font-size: 30px;
+            font-weight: 600;
+            margin: 0px auto;
+            padding: 25px;
+            display:block;
+            color: rgb(134, 46, 14);
+            border: 3px solid coral;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color:bisque;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+    @using (Html.BeginForm())
+    {
+        <section class="wrapper">
+            <div class="menu">
+                <!-- <h2>Меню</h2> -->
+                <div class="contaiher">
+
+                    @{
+                        int i = 0;
+                        foreach (var p in Model)
+                        {
+                            i++;
+
+                            if ((p.Price <= ViewBag.SumMoney) & (p.BThereIsDrink))
+                            {
+                                <button name="clickonbutton" class="menu__item" type="submit" value="@p.Name">
+                                    <div class="drink">
+                                        <img class="drink__img" src="@Url.Action("GetImage", "Home", new { p.ProductID })">
+                                        <h3 class="drink__name">@p.Name</h3>
+                                        <p class="drink__price">@p.Price руб.</p>
+                                    </div>
+                                </button>
+                            }
+
+                            else
+                            {
+                                <button name="clickonbutton" class="menu__item" type="submit" value="@p.Name" disabled>
+                                    <div class="drink">
+                                        <img class="drink__img" src="@Url.Action("GetImage", "Home", new { p.ProductID })">
+                                        <h3 class="drink__name">@p.Name</h3>
+                                        <p class="drink__price">@p.Price руб.</p>
+                                    </div>
+                                </button>
+                            }
+
+                            if (i % 3 == 0)
+                            {
+
+                                @Html.CreateList("<p> </p>");
+
+                            }
+                        }
+                    }
+
+                    <input class="hide" name="SumMoney" value=@ViewBag.SumMoney>
+                </div>
+            </div>
+
+            <div class="menu">
+                <div class="pay">
+                    <h2 class="header">Внесите оплату</h2>
+                    <div class="container">
+                        <button name="clickbuttoncoin" class="money__button " id="One" type="submit" disabled=@ViewBag.BDontOne><img class="money" src="~/images/1рубль.jpg" alt="1 рубль"></button>
+                        <button name="clickbuttoncoin" class="money__button " id="Two" type="submit" disabled=@ViewBag.BDontTwo><img class="money" src="~/images/2р.jpg" alt="2 рубля"></button>
+                    </div>
+                    <div class="container">
+                        <button name="clickbuttoncoin" class="money__button " id="Five" type="submit" disabled=@ViewBag.BDontFive><img class="money" src="~/images/5рублей.jpg" alt="5 рублей"></button>
+                        <button name="clickbuttoncoin" class="money__button " id="Ten" type="submit" disabled=@ViewBag.BDontTen><img class="money" src="~/images/10рублей.jpg" alt="10 рублей"></button>
+                    </div>
+                </div>
+                <div class="pay__oll">
+                    <h2 class="header">Внесено</h2>
+                    <form action="">
+                        <output class="summa" name="result">@ViewBag.SumMoney</output>
+                    </form>
+                </div>
+                <div class="change">
+                    <h2 class="header">Возьмите сдачу</h2>
+                    <form action="">
+                        <button name="buttonrestofmoney" class="summa" type="submit" >@ViewBag.RestOfMoney</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    }
+</body>
+

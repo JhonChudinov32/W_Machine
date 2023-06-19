@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Административная панель";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1 style="text-align:center; color:brown">Административная панель</h1>
+
+<table class="Grid">
+    <tr>
+        <td style="text-align:center"><button onclick="location.href='@Url.Action("Drink")';return false;">Управление товарами</button></td>
+        <td style="text-align:center"><button onclick="location.href='@Url.Action("Coin")';return false;">Управление монетами</button></td>
+    </tr>
+</table>
+
