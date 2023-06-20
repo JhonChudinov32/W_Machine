@@ -16,7 +16,7 @@
         color: rgb(134, 46, 14);
     }
 
-    form {
+    f {
         display: flex;
         flex-direction: column;
     }
@@ -109,7 +109,7 @@
     }
 </style>
 <section class="wrapper">
-    <form novalidate>
+    <f novalidate>
         @if (@Model.Name == null)
         {
             <h1>Добавить товар:</h1>
@@ -152,5 +152,5 @@
                 <button type="submit" onclick="location.href='@Url.Action("Drink")';return false;">Вернуться</button>
             </div>
         }
-    </form>
+    </f>
 </section>
